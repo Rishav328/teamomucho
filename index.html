@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&family=Pacifico&display=swap');
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+        background-color: #f0f0f0;
+        font-family: 'Briem Hand', cursive;
+        font-weight: bold;
+	background: linear-gradient(#020024, #090979, #00d4ff)
+      }
+
+      .message {
+	text-shadow: 0px 0px 25px #00ffe7;
+        color: white;
+	opacity: 0; /* Start hidden */
+        transition: opacity 2s ease; /* Transition effect */
+        font-size: 24px;
+        text-align: center;
+      }
+
+      .visible {
+        opacity: 1; /* Fully visible */
+      }
+    </style>
+    <title>TeAmoMucho</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const messages = [
+        { 
+          message: 'Hello, Bestie!' 
+        },
+        {
+          message: 'Sometimes, I wish kaash kahi bahar jau and tum mil jao waha!',
+        },
+        {
+          message: 'Har jagah bas tum hi dhikte ho kabhi kabhi, lagta hai jaise mere aas pass hi ho',
+        },
+        {
+          message: "I understand your situation as you are not in home, so I am not sad but I'm sharing my feelings with you"
+        },
+	{
+	  message: "tumhe dhekne ka, tumse baat karne ka, tumse milne ka"
+	},
+	{
+	  message: "mann bahut karta hai"
+	},
+	{
+	  message: "I wanna hug you, I wanna spent my time with you"
+	},
+	{
+	  message: "You are still same and special to me whom I love the most and I wanna see you happy"
+	},
+	{
+	  message: "I send you long texts because I care about you"
+	},
+	{
+	  message: "I generally send you hug/cuddles/happy gifs when I am too sad or too happy"
+	},
+	{
+	  message: "I send you caring messages because that is the my way to express the affection"
+	},
+        {
+          message: "Your laughter is my favorite sound, and your happiness is my greatest wish."
+        },
+        {
+          message: "The world feels a little less bright without you by my side."
+        },
+	{
+	  message: "I have to say more, but jab tum samne ho tab!!"
+	},
+	{
+	  message: "You are that world and person for me jahan daar nahi lagta and sukkon milta hai, I have sent you this"
+	},
+	{
+	  message: "BECAUSE..."
+	},
+        {
+          message: "I miss you! Yaad aa rahi hai aapki!"
+        },
+        
+      ];
+
+      function App() {
+        const [count, setCount] = React.useState(0);
+        const [visible, setVisible] = React.useState(false);
+
+        React.useEffect(() => {
+          const showMessage = () => {
+            setVisible(true); // Show message
+
+            setTimeout(() => {
+              setVisible(false); // Hide message after 5 seconds
+              setTimeout(() => {
+                setCount((prevCount) => (prevCount + 1) % messages.length); // Move to next message
+              }, 2000); // Wait 2 seconds before changing the message
+            }, 5000); // Stay for 5 seconds
+          };
+
+          showMessage(); // Show the first message immediately
+          const intervalId = setInterval(showMessage, 8000); // Show a new message every 8 seconds
+
+          return () => {
+            clearInterval(intervalId);
+          };
+        }, []);
+
+        return (
+          <div className="main-page">
+            <h1 className={`message ${visible ? 'visible' : ''}`}>
+              {messages[count].message}
+            </h1>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+    <audio controls style=" display:none;" loop   id="music"  >
+    <source  src="abc.mp3">
+    <script>
+      window.addEventListener("click",play);
+      function play() { document.getElementById("music").play();
+      }
+    </script> 
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script>
+          swal("Hi Motu", "A small messages for you!");
+          
+      </script>
+
+  </body>
+</html>
+
